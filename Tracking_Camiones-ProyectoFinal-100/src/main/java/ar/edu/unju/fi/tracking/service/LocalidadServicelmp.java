@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
@@ -15,7 +15,7 @@ import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
  * utilizarlos luego para manipular los datos 
  * @author Toconas Ulises
  */
-@Repository
+@Service
 public class LocalidadServicelmp implements ILocalidadService {
 
 	@Autowired
@@ -41,6 +41,11 @@ public class LocalidadServicelmp implements ILocalidadService {
 	public void eliminarLocalidad(Long id) {
 		localidadDAOimp.deleteById(id);;
 		
+	}
+
+	@Override
+	public Localidad buscarLocalidadNombre(String nombre) throws Exception {
+		return localidadDAOimp.findByNombre(nombre).orElseThrow();
 	}
 	
 }
